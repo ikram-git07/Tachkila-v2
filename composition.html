@@ -19,8 +19,15 @@
             </strong>
 
         </div>
+        <div class="rounded-2xl border border-slate-700 p-3">
+        <nav class="flex items-center gap-5">
+            <a href="effectif.html" class="font-semibold text-white hover:text-green-400">Effectif</a>
+            <a href="matchs.html" class="font-semibold text-white hover:text-green-400">Matchs</a>
+            <a href="composition.html" class="font-semibold text-white hover:text-gray-400">Composition</a>
+        </nav>
+        </div>
         <nav>
-            <ul class="flex items-center gap-6">
+            <ul class="flex items-center gap-6 p-3">
                 <li class="flex items-center gap-2 text-base font-bold  text-amber-500 ">
                     <span class="w-3 h-3 rounded-full bg-amber-500"> </span>GB
                 </li>
@@ -28,23 +35,19 @@
                     <span class="w-3 h-3 rounded-full bg-blue-500"> </span>DEF
                 </li>
                 <li class="flex items-center gap-2 text-base font-bold  text-green-500 ">
-                    <span class="w-3 h-3 rounded-full bg-green-500"> </span>DEF
+                    <span class="w-3 h-3 rounded-full bg-green-500"> </span>MIL
                 </li>
                 <li class="flex items-center gap-2 text-base font-bold  text-red-500 ">
-                    <span class="w-3 h-3 rounded-full bg-red-500"> </span>DEF
+                    <span class="w-3 h-3 rounded-full bg-red-500"> </span>ATT
                 </li>
             </ul>
         </nav>
-        <div class="flex  items-center gap-3 ">
-            <h1>schéma</h1>
-            <button class=" border border-gray-600 bg-slate-400 px-2 cursor-pointer rounded-xl">3-4-3 </button>
-        </div>
+       
     </header>
     <main>
         <div class="flex flex-col lg:flex-row min-h-[calc(100vh-74px)]">
             <aside class=" w-full lg:w-90 bg-slate-700 border border-slate-800 p-4 ">
-                <button id="clik"
-                    class="  text-white bg-green-400 w-full justify-center rounded-md cursor-pointer ">
+                <button id="clik" class="  hidden text-white bg-green-400 w-full justify-center rounded-md cursor-pointer ">
                     <strong> +Ajouter un joueur </strong></button>
 
 
@@ -79,7 +82,7 @@
                                     <input type="radio" name="poste_modif" value="Attaquant">
                                     <span class="text-red-500">●</span> Attaquant
                                 </label>
-                                
+
 
                             </div>
                         </fieldset>
