@@ -117,7 +117,8 @@
                                 &times;</button>
                         </div>
                         <label for="nom">Nom complet</label><br>
-                        <input type="text" id="nom" placeholder="Ex.Ayoub Arbaoui" class=" border border-amber-700  rounded-xl p-1 ">
+                        <input type="text" id="nom" placeholder="Ex.Ayoub Arbaoui"
+                            class=" border border-amber-700  rounded-xl p-1 ">
                         <p id=" nom-msg" class="text-red-500 text-sm"></p>
 
 
@@ -184,6 +185,26 @@
 
         </div>
 
+        <div class="flex  gap-1 rounded-lg bg-slate-900 p-1 ">
+           
+            <button data-post=" Tous"
+                class="filter rounded-md bg-green-500 px-3 py-1 text-sm font-semibold text-white">Tous</button>
+            <button data-post="Gardien"
+                class="filter rounded-md px-3 py-1 text-sm font-semibold text-white ">GB</button>
+            <button data-post="Défenseur" class="filter rounded-md px-3 py-1 text-sm font-semibold  text-white">
+                MIL</button>
+               
+            
+            <div class="mt-6 flex  items-center gap-3 rounded-xl border border-slate-700 bg-slate-800 p-4 w-[70%]">
+                <input id="recherche" type="text" placeholder="rechercher un joueur par nom... "
+                    class="w-full bg-slate-900 p-1 rounded-xl text-white">
+
+            </div>
+        </div>
+
+
+
+        <!-- 
         <div class="mt-6 flex  items-center gap-3 rounded-xl border border-slate-700 bg-slate-800 p-4">
             <input id="recherche" type="text" placeholder="rechercher un joueur par nom... "
                 class="w-full bg-slate-900 p-1 rounded-xl text-white">
@@ -196,7 +217,7 @@
             </div>
 
 
-        </div>
+        </div> -->
 
 
     </main>
