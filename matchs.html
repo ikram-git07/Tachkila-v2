@@ -9,7 +9,7 @@
     <script src="tachkila.js" defer></script>
 </head>
 
-<body>
+<body class="bg-slate-900">
     <header class="bg-slate-800 p-3 border-b-4 border-slate-500 text-white flex flex-wrap justify-between gap-3">
 
         <div class="flex  items-center  gap-3">
@@ -20,11 +20,11 @@
 
         </div>
         <div class="rounded-2xl border border-slate-700 p-3">
-        <nav class="flex items-center gap-5">
-            <a href="effectif.html" class="font-semibold text-white hover:text-green-400 " >Effectif</a>
-            <a href="matchs.html" class="font-semibold text-white hover:text-green-400">Matchs</a>
-            <a href="composition.html" class="font-semibold text-white hover:text-green-400">Composition</a>
-        </nav>
+            <nav class="flex items-center gap-5">
+                <a href="effectif.html" class="font-semibold  hover:text-green-400 ">Effectif</a>
+                <a href="matchs.html" class="font-semibold text-green-400">Matchs</a>
+                <a href="composition.html" class="font-semibold hover:text-green-400">Composition</a>
+            </nav>
         </div>
         <nav>
             <ul class="flex items-center gap-6 p-3">
@@ -42,6 +42,162 @@
                 </li>
             </ul>
         </nav>
-       
+
     </header>
-   
+    <main class="p-6">
+        <div class="flex items-center justify-between text-white">
+            <div>
+                <h2 class="text-3xl font-bold"> Matchs</h2>
+                <p class="text-slate-400 text-sm ">Calendrier et resultats de la saison 2026/2027.</p>
+
+
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="clik"
+                    class="  text-white bg-green-400  text-white font-bold rounded-md cursor-pointer  px-4  py-2">
+                    <strong> +Ajouter un match </strong>
+                </button>
+
+
+
+
+                <div id="mdl_modif" class="fixed inset-0 hidden items-center justify-center bg-black/60 p-4">
+                    <div class="w-full max-w-md bg-slate-800 rounded-2xl border border-slate-700 p-6 text-white">
+                        <div class="flex justify-between items-center mb-5">
+                            <strong class="text-xl">Modifier le joueur</strong>
+                            <button id="Fermer_modif"
+                                class="text-2xl leading-none text-slate-400 hover:text-white">&times;</button>
+                        </div>
+                        <label for="nom_modif" class="text-sm font-semibold text-slate-400">Nom complet</label>
+                        <input type="text" id="nom_modif"
+                            class="mt-2 w-full rounded-xl border-2 border-blue-900 bg-slate-900 p-3 text-white outline-none focus:border-blue-500">
+                        <p id="nom_modif_msg" class="text-red-500 text-sm"></p>
+                        <fieldset class="mt-5 mb-5">
+                            <legend class="text-sm font-semibold text-slate-400 mb-2">Poste</legend>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 p-3">
+                                    <input type="radio" name="poste_modif" value="Gardien">
+                                    <span class="text-amber-500">●</span> Gardien
+                                </label>
+                                <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 p-3">
+                                    <input type="radio" name="poste_modif" value="Défenseur">
+                                    <span class="text-blue-500">●</span> Défenseur
+                                </label>
+                                <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 p-3">
+                                    <input type="radio" name="poste_modif" value="Milieu">
+                                    <span class="text-green-500">●</span> Milieu
+                                </label>
+                                <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 p-3">
+                                    <input type="radio" name="poste_modif" value="Attaquant">
+                                    <span class="text-red-500">●</span> Attaquant
+                                </label>
+
+
+                            </div>
+                        </fieldset>
+                        <label for="numero-modif" class="text-sm font-semibold text-slate-400">Numéro (1 à 99)</label>
+                        <input type="text" id="numero_modif"
+                            class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-900 p-3 text-white outline-none focus:border-blue-500">
+                        <p id="numero_modif_msg" class="text-red-500 text-sm"></p>
+                        <div class="flex justify-end gap-3 mt-6">
+                            <button id="annuler_modif"
+                                class="rounded-xl bg-slate-600 px-5 py-2 font-semibold hover:bg-slate-500">Annuler</button>
+                            <button id="enregistrer"
+                                class="rounded-xl bg-green-400 bg-green-600 px-5 py-2 font-semibold hover:bg-green-700">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="mymdl" class=" fixed inset-0  hidden items-center justify-center bg-black-500/60 p-4">
+                    <div class="w-full max-w-xl bg-slate-700 rounded-xl border-4 border-indigo-600 p-4 ">
+                        <div class="flex justify-between items-center font-bold">
+                            <strong>Ajouter un joueur</strong>
+                            <button id="fermer" class="text-2xl leading-none text-slate-400 hover:text-white">
+                                &times;</button>
+                        </div>
+                        <label for="nom">Nom complet</label><br>
+                        <input type="text" id="nom" placeholder="Ex.Ayoub Arbaoui" class=" border border-amber-700  rounded-xl p-1 ">
+                        <p id=" nom-msg" class="text-red-500 text-sm"></p>
+
+
+                        <fieldset class="mb-3 mt-3">
+
+
+                            <legend>
+                                <p>Poste
+                            </legend>
+
+                            <!-- pour  les 4chouix -->
+                            <div class="grid grid-cols-2  gap-3">
+
+
+                                <label
+                                    class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-amber-700 text-white">
+                                    <input type="radio" name="poste" value="Gardien" required>
+                                    <span class="text-amber-500">●</span> Gardien
+                                </label>
+                                <label
+                                    class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-blue-500 text-white">
+                                    <input type="radio" name="poste" value="Défenseur" required>
+                                    <span class="text-blue-500">●</span> Défenseur
+                                </label>
+                                <label
+                                    class=" flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-pink-500 text-white">
+                                    <input type="radio" name="poste" value="Milieu" required>
+                                    <span class="text-pink-500">●</span>Milieu
+                                </label>
+                                <label
+                                    class=" flex cursor-pointer items-center gap-2 rounded-xl border border-black-700 bg-slate-800 p-3 hover:border-green-500 text-white">
+                                    <input type="radio" name="poste" value="Attaquant" required>
+                                    <span class="text-green-500">●</span>Attaquant
+                                </label>
+
+
+                            </div>
+                            <p id="poste-msg" class="text-red-500 text-sm"></p>
+                        </fieldset>
+                        <label for="numero">Numéro (1 à 99)</label><br>
+                        <input type="text" id="numero" placeholder="Ex:02"
+                            class=" border border-amber-700 rounded-xl p-1">
+                        <p id="numero-msg" class="text-red-500 text-sm"></p>
+
+                        <div>
+                            <div class="flex justify-end gap-3">
+                                <button id="annuler"
+                                    class="rounded-xl bg-slate-800 px-5 py-3 font-semibold hover:bg-slate-900">
+                                    Annuler
+                                </button>
+                                <button id="ajouter" type="submit"
+                                    class="rounded-xl bg-green-600 px-5 py-3 font-semibold hover:bg-green-700">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="mt-6 flex  items-center gap-3 rounded-xl border border-slate-700 bg-slate-800 p-4">
+            <input id="recherche" type="text" placeholder="rechercher un joueur par nom... "
+                class="w-full bg-slate-900 p-1 rounded-xl text-white">
+            <div class="flex gap-1 rounded-lg bg-slate-900 p-1 ">
+                <button data-post=" Tous"
+                    class="filter rounded-md bg-green-500 px-3 py-1 text-sm font-semibold text-white">Tous</button>
+                <button data-post="Gardien" class="filter rounded-md px-3 py-1 text-sm font-semibold text-white ">GB</button>
+                <button data-post="Défenseur" class="filter rounded-md px-3 py-1 text-sm font-semibold  text-white"> MIL</button>
+                <button data-post="Attaquant" class="filter rounded-md px-3 py-1 text-sm font-semibold text-white "> ATT</button>
+            </div>
+
+
+        </div>
+
+
+    </main>
+</body>
