@@ -85,7 +85,7 @@ charger();
 
 
 function afficher() {
-   ListeJoueurs.innerHTML = "";
+   ListeJoueurs.innerHTML = ` `;
    for (let i = 0; i < joueurs.length; i++) {
       const carte = document.createElement("div");
       carte.className = "bg-slate-500 border border-slate-900 rounded-xl p-4 w-full mt-3";
