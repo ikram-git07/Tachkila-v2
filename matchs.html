@@ -68,7 +68,7 @@
                             <button id="Fermer_modif"
                                 class="text-2xl leading-none text-slate-400 hover:text-white">&times;</button>
                         </div>
-                        <label for="nom_modif" class="text-sm font-semibold text-slate-400">Nom complet</label>
+                        <label for="nom_modif" class="text-sm font-semibold text-slate-400">Adversaire</label>
                         <input type="text" id="nom_modif"
                             class="mt-2 w-full rounded-xl border-2 border-blue-900 bg-slate-900 p-3 text-white outline-none focus:border-blue-500">
                         <p id="nom_modif_msg" class="text-red-500 text-sm"></p>
@@ -116,52 +116,48 @@
                             <button id="fermer" class="text-2xl leading-none text-slate-400 hover:text-white">
                                 &times;</button>
                         </div>
-                        <label for="nom">Nom complet</label><br>
-                        <input type="text" id="nom" placeholder="Ex.Ayoub Arbaoui"
-                            class=" border border-amber-700  rounded-xl p-1 ">
-                        <p id=" nom-msg" class="text-red-500 text-sm"></p>
-
+                        <label for="nom">Adversaire</label><br>
+                        <input type="text" id="nom"
+                            class=" border border-slate-900  rounded-xl p-1 w-full bg-slate-800 hover:border-slate-500 text-white">
 
                         <fieldset class="mb-3 mt-3">
-
-
                             <legend>
-                                <p>Poste
+                                <p>Date
                             </legend>
 
-                            <!-- pour  les 4chouix -->
+
                             <div class="grid grid-cols-2  gap-3">
+                                <label
+                                    class="flex cursor-pointer items-center  rounded-xl border border-slate-700 bg-slate-800 hover:border-slate-500 text-white px-10 py-1">
+                                    <input type="text" name="poste" required>
 
+                                </label>
 
                                 <label
-                                    class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-amber-700 text-white">
-                                    <input type="radio" name="poste" value="Gardien" required>
-                                    <span class="text-amber-500">●</span> Gardien
-                                </label>
-                                <label
-                                    class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-blue-500 text-white">
-                                    <input type="radio" name="poste" value="Défenseur" required>
-                                    <span class="text-blue-500">●</span> Défenseur
-                                </label>
-                                <label
-                                    class=" flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-pink-500 text-white">
-                                    <input type="radio" name="poste" value="Milieu" required>
-                                    <span class="text-pink-500">●</span>Milieu
-                                </label>
-                                <label
-                                    class=" flex cursor-pointer items-center gap-2 rounded-xl border border-black-700 bg-slate-800 p-3 hover:border-green-500 text-white">
-                                    <input type="radio" name="poste" value="Attaquant" required>
-                                    <span class="text-green-500">●</span>Attaquant
+                                    class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-slate-500 text-white">
+                                    <input type="text" name="poste" placeholder="15:00">
+
                                 </label>
 
 
-                            </div>
-                            <p id="poste-msg" class="text-red-500 text-sm"></p>
+
+
+
                         </fieldset>
-                        <label for="numero">Numéro (1 à 99)</label><br>
-                        <input type="text" id="numero" placeholder="Ex:02"
-                            class=" border border-amber-700 rounded-xl p-1">
-                        <p id="numero-msg" class="text-red-500 text-sm"></p>
+                        <label for="numero">Lieu</label><br>
+                        <input type="text" id="numero"
+                            class=" border border-slate-900 rounded-xl p-1 w-full bg-slate-800 p-3 hover:border-slate-500 text-white">
+                        <div class="grid grid-cols-2 mt-5 gap-3">
+                            <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-800 p-3">
+                                <input type="radio" name="poste_modif" value="Gardien">
+                                Domicile
+                            </label>
+                            <label class="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-800 p-3">
+                                <input type="radio" name="poste_modif" value="Défenseur">
+                                Exterieur
+                            </label>
+                        </div>
+
 
                         <div>
                             <div class="flex justify-end gap-3">
@@ -171,7 +167,7 @@
                                 </button>
                                 <button id="ajouter" type="submit"
                                     class="rounded-xl bg-green-600 px-5 py-3 font-semibold hover:bg-green-700">
-                                    Ajouter
+                                    Enregistrer
                                 </button>
                             </div>
                         </div>
@@ -186,15 +182,15 @@
         </div>
 
         <div class="flex  gap-1 rounded-lg bg-slate-900 p-1 ">
-           
+
             <button data-post=" Tous"
                 class="filter rounded-md bg-green-500 px-3 py-1 text-sm font-semibold text-white">Tous</button>
             <button data-post="Gardien"
                 class="filter rounded-md px-3 py-1 text-sm font-semibold text-white ">GB</button>
             <button data-post="Défenseur" class="filter rounded-md px-3 py-1 text-sm font-semibold  text-white">
                 MIL</button>
-               
-            
+
+
             <div class="mt-6 flex  items-center gap-3 rounded-xl border border-slate-700 bg-slate-800 p-4 w-[70%]">
                 <input id="recherche" type="text" placeholder="rechercher un joueur par nom... "
                     class="w-full bg-slate-900 p-1 rounded-xl text-white">
