@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style.css">
-    <script src="tachkila.js" defer></script>
+    <script src="Composition.js" defer></script>
 </head>
 
+
 <body class="bg-slate-900">
-    <header class="bg-slate-800 p-3 border-b-4 border-slate-500 text-white flex flex-wrap justify-between gap-3">
+     <header class="bg-slate-800 p-3 border-b-4 border-slate-500 text-white flex flex-wrap justify-between gap-3">
 
         <div class="flex  items-center  gap-3">
             <img src="Microsoft-Fluentui-Emoji-3d-Soccer-Ball-3d.svg" alt="">
@@ -20,11 +21,11 @@
 
         </div>
         <div class="rounded-2xl border border-slate-700 p-3">
-        <nav class="flex items-center gap-5">
-            <a href="effectif.html" class="font-semibold  hover:text-green-400">Effectif</a>
-            <a href="matchs.html" class="font-semibold hover:text-green-400">Matchs</a>
-            <a href="composition.html" class="font-semibold  text-green-400">Composition</a>
-        </nav>
+            <nav class="flex items-center gap-5">
+                <a href="effectif.html" class="font-semibold  hover:text-green-400">Effectif</a>
+                <a href="matchs.html" class="font-semibold hover:text-green-400">Matchs</a>
+                <a href="composition.html" class="font-semibold  text-green-400">Composition</a>
+            </nav>
         </div>
         <nav>
             <ul class="flex items-center gap-6 p-3">
@@ -36,7 +37,15 @@
                 </li>
                 <li class="flex items-center gap-2 text-base font-bold  text-green-500 ">
                     <span class="w-3 h-3 rounded-full bg-green-500"> </span>MIL
-                </li> <div class="flex flex-col lg:flex-row min-h-[calc(100vh-74px)]">
+                </li>
+                <li class="flex items-center gap-2 text-base font-bold  text-red-500 ">
+                    <span class="w-3 h-3 rounded-full bg-red-500"> </span>ATT
+                </li>
+            </ul>
+        </nav>
+    </header>
+   
+         </li> <div class="flex flex-col lg:flex-row min-h-[calc(100vh-74px)]">
             <aside class=" w-full lg:w-90 bg-slate-700 border border-slate-800 p-4 ">
                 <button id="clik" class="  hidden text-white bg-green-400 w-full justify-center rounded-md cursor-pointer ">
                     <strong> +Ajouter un joueur </strong></button>
@@ -156,19 +165,11 @@
                         </div>
                     </div>
                 </div>
-                <li class="flex items-center gap-2 text-base font-bold  text-red-500 ">
-                    <span class="w-3 h-3 rounded-full bg-red-500"> </span>ATT
-                </li>
+                
             </ul>
         </nav>
        
     </header>
-
-
-
-
-
-
 
     <main>
        
@@ -177,8 +178,7 @@
                     <span class="text-white bg-slate-800 text-ts px-2 py-0.5 cursor-pointer rounded font-semibold  ">1
                         joueur(s)</span>
                 </div>
-                <p class=" text-gray-400 text-sm py-3  ">Cliquez sur un joueur placé pour voir sa case
-                    sur le terrain. ✏️ pour modifier, 🗑️ pour supprimer.</p>
+               
                 <div id="liste-joueurs">
                 </div>
             </aside>
