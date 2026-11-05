@@ -12,59 +12,59 @@ const regexNom = /^[A-Za-zÀ-ÿ]+(?:[ '-][A-Za-zÀ-ÿ]+)*$/;
 const regexNumero = /^(0?[1-9]|[1-9][0-9])$/;
 const ListeJoueurs = document.querySelector("#liste-joueurs")
 const age = document.querySelector("#age")
+const recherche =document.querySelector("#recherche"); 
+
+
 
 
 
 
 
 btn.addEventListener("click", function () {
-   lemodal.classList.remove("hidden")
-   lemodal.classList.add("flex")
-
-
-
+    lemodal.classList.remove("hidden")
+    lemodal.classList.add("flex")
 })
 sort.addEventListener("click", function () {
-   lemodal.classList.remove("flex")
-   lemodal.classList.add("hidden")
+    lemodal.classList.remove("flex")
+    lemodal.classList.add("hidden")
 
 })
 annule.addEventListener("click", function () {
-   lemodal.classList.remove("flex")
-   lemodal.classList.add("hidden")
+    lemodal.classList.remove("flex")
+    lemodal.classList.add("hidden")
 
 })
+
 
 
 // c pour ajour de nom de joueur
 nom.addEventListener("input", function () {
-   const valeur = nom.value.trim();
-   const regex = /^[A-Za-zÀ-ÿ]+(?:[ '-][A-Za-zÀ-ÿ]+)*$/;
+    const valeur = nom.value.trim();
+    const regex = /^[A-Za-zÀ-ÿ]+(?:[ '-][A-Za-zÀ-ÿ]+)*$/;
 
-   if (valeur === "") {
-      nomMsg.textContent = "";
-   } else if (!regex.test(valeur)) {
-      nomMsg.textContent = "entrez le nom sans chiffres";
-   } else {
-      nomMsg.textContent = "";
-
-   }
+    if (valeur === "") {
+        nomMsg.textContent = "";
+    } else if (!regex.test(valeur)) {
+        nomMsg.textContent = "entrez le nom sans chiffres";
+    } else {
+        nomMsg.textContent = "";
+    }
 });
 
 
 // c pour ajouter le num de joueur
 numero.addEventListener("input", function () {
-   const valeur = numero.value.trim();
-   const regex = /^(0?[1-9]|[1-9][0-9])$/;
+    const valeur = numero.value.trim();
+    const regex = /^(0?[1-9]|[1-9][0-9])$/;
 
-   if (valeur === "") {
-      numeroMsg.textContent = "";
-   } else if (!regex.test(valeur)) {
+    if (valeur === "") {
+        numeroMsg.textContent = "";
+    } else if (!regex.test(valeur)) {
 
-      numeroMsg.textContent = "Entrez un numéro entre 1 et 99";
-   } else {
-      numeroMsg.textContent = "";
-   }
+        numeroMsg.textContent = "Entrez un numéro entre 1 et 99";
+    } else {
+        numeroMsg.textContent = "";
+    }
 });
 // c pour afficher le msg dereur si les champs vide
 const ajout = document.querySelector("#ajouter")
@@ -72,110 +72,110 @@ let joueurs = [];
 let indexmodif = null;
 charger();
 function sauvegarder() {
-   localStorage.setItem("joueurs", JSON.stringify(joueurs));
+    localStorage.setItem("joueurs", JSON.stringify(joueurs));
 }
 function charger() {
-   const donnees = localStorage.getItem("joueurs");
-   if (donnees !== null) {
-      joueurs = JSON.parse(donnees);
-   }
+    const donnees = localStorage.getItem("joueurs");
+    if (donnees !== null) {
+        joueurs = JSON.parse(donnees);
+    }
 }
 
 
 
-function afficher() {
-   ListeJoueurs.innerHTML = ` `;
-   for (let i = 0; i < joueurs.length; i++) {
-      const carte = document.createElement("div");
-      carte.className = "bg-slate-500 border border-slate-900 rounded-xl p-4 w-full mt-3";
-      carte.innerHTML = `
+function afficher(aff = joueurs) {
+    ListeJoueurs.innerHTML = ` `;
+    for (let i = 0; i < aff.length; i++) {
+        const carte = document.createElement("div");
+        carte.className = "bg-slate-500 border border-slate-900 rounded-xl p-4 w-full mt-3";
+        carte.innerHTML = `
       <div class="flex items-center justify-between mb-3">
             <div class="flex items-center space-x-3">
                <div class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-amber-700">
-                  <h2>${joueurs[i].numero}</h2>
+                  <h2>${aff[i].numero}</h2>
                   </div>
                   <div>
-                     <h4 class="text-white font-bold text-sm leading-light">${joueurs[i].nom}</h4>
-                  <span class="text-slate-900 text-sm">${joueurs[i].poste}</span>
+                     <h4 class="text-white font-bold text-sm leading-light">${aff[i].nom}</h4>
+                  <span class="text-slate-900 text-sm">${aff[i].poste}</span>
                </div>
                </div>
-            <div class="flex items-center space-x-3 text-slate-400 text-sm">
-               <button  onclick="modifier(${i})" class="cursor-pointer" >✏️</button>
-               <button onclick="supprimer(${i})" class="cursor-pointer" >🗑️</button>
-               <p >${joueurs[i].etat}</p>
-               <p >${joueurs[i].age}</p>
-            </div>
-
-            <button v class="cursor-pointer">Capitan</button>
+            <button v class="cursor-pointer ">Capitan</button>
             
          </div >
+        
+            <p class="border rounded-xl ">${aff[i].etat}</p>
+             <p class="p-3"> Age: ${aff[i].age} ans</p>  
+               <div class="lg:flex lg:ml-auto lg:justify-end space-x-3 text-slate-400 text-sm">
+               <button  onclick="modifier(${i})" class="cursor-pointer" >✏️</button>
+               <button onclick="supprimer(${i})" class="cursor-pointer" >🗑️</button>
+             </div>
          
       `;
-      ListeJoueurs.appendChild(carte);
-   }
+        ListeJoueurs.appendChild(carte);
+    }
 }
 
- 
+
 
 
 
 function ajouterJoueur() {
-   const valeurNom = nom.value;
-   const valeurNumero = numero.value;
+    const valeurNom = nom.value;
+    const valeurNumero = numero.value;
 
-   const poste = document.querySelector('input[name="poste"]:checked');
-   const forme = document.querySelector('input[name="forme"]:checked');
-
-
+    const poste = document.querySelector('input[name="poste"]:checked');
+    const forme = document.querySelector('input[name="forme"]:checked');
 
 
-   if (valeurNom === "") {
-      nomMsg.textContent = "Le nom de joueur est obligatoire";
 
-   } else if (!regexNom.test(valeurNom)) {
-      nomMsg.textContent = "Entrez un nom valide";
 
-   } else {
-      nomMsg.textContent = "";
-   }
-   if (valeurNumero === "") {
-      numeroMsg.textContent = "le numero est obligatoire";
+    if (valeurNom === "") {
+        nomMsg.textContent = "Le nom de joueur est obligatoire";
 
-   } else if (!regexNumero.test(valeurNumero)) {
-      numeroMsg.textContent = "Entrez un nbr entre 1 et 99";
+    } else if (!regexNom.test(valeurNom)) {
+        nomMsg.textContent = "Entrez un nom valide";
 
-   } else {
-      numeroMsg.textContent = "";
+    } else {
+        nomMsg.textContent = "";
+    }
+    if (valeurNumero === "") {
+        numeroMsg.textContent = "le numero est obligatoire";
 
-   }
-   if (poste === null) {
-      posteMsg.textContent = "choisissez un poste";
+    } else if (!regexNumero.test(valeurNumero)) {
+        numeroMsg.textContent = "Entrez un nbr entre 1 et 99";
 
-   } else {
-      posteMsg.textContent = "";
-   }
-   if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || poste === null) {
-      return;
-   }
+    } else {
+        numeroMsg.textContent = "";
 
-   joueurs.push({
-      id: Date.now(),
-      nom: valeurNom,
-      numero: valeurNumero,
-      poste: poste.value,
-      etat: forme.value,
-      age: age.value,
-      capitan: false
+    }
+    if (poste === null) {
+        posteMsg.textContent = "choisissez un poste";
 
-   });
-   sauvegarder();
-   afficher();
+    } else {
+        posteMsg.textContent = "";
+    }
+    if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || poste === null) {
+        return;
+    }
 
-   nom.value = "";
-   numero.value = "";
-   poste.checked = false;
-   lemodal.classList.remove("flex");
-   lemodal.classList.add("hidden");
+    joueurs.push({
+        id: Date.now(),
+        nom: valeurNom,
+        numero: valeurNumero,
+        poste: poste.value,
+        etat: forme.value,
+        age: age.value,
+        capitatn: false
+
+    });
+    sauvegarder();
+    afficher();
+
+    nom.value = "";
+    numero.value = "";
+    poste.checked = false;
+    lemodal.classList.remove("flex");
+    lemodal.classList.add("hidden");
 
 }
 ajout.addEventListener("click", ajouterJoueur);
@@ -191,61 +191,74 @@ const numero_modif = document.querySelector("#numero_modif");
 const numero_modif_msg = document.querySelector("#numero_modif_msg");
 
 function supprimer(i) {
-   joueurs.splice(i, 1);
-   sauvegarder();
-   afficher();
+    joueurs.splice(i, 1);
+    sauvegarder();
+    afficher();
 }
 function modifier(i) {
-   indexmodif = i;
-   nom_modif.value = joueurs[i].nom;
-   numero_modif.value = joueurs[i].numero;
-   document.querySelector('input[name="poste_modif"][value="' + joueurs[i].poste + '"]').checked = true;
+    indexmodif = i;
+    nom_modif.value = joueurs[i].nom;
+    numero_modif.value = joueurs[i].numero;
+    document.querySelector('input[name="poste_modif"][value="' + joueurs[i].poste + '"]').checked = true;
 
 
-   nom_modif_msg.textContent = "";
-   numero_modif_msg.textContent = "";
-   mdl_modif.classList.remove("hidden");
-   mdl_modif.classList.add("flex");
+    nom_modif_msg.textContent = "";
+    numero_modif_msg.textContent = "";
+    mdl_modif.classList.remove("hidden");
+    mdl_modif.classList.add("flex");
 }
 function fermer_le_modal_modif() {
-   mdl_modif.classList.remove("flex");
-   mdl_modif.classList.add("hidden");
+    mdl_modif.classList.remove("flex");
+    mdl_modif.classList.add("hidden");
 }
 fermer_modif.addEventListener("click", fermer_le_modal_modif);
 annuler_modif.addEventListener("click", fermer_le_modal_modif);
 
 enregistrer.addEventListener("click", function () {
-   const nouveau_nom = nom_modif.value.trim();
-   const nouveau_numero = numero_modif.value.trim();
-   const nouveau_poste = document.querySelector('input[name="poste_modif"]:checked');
-   let valide = true;
+    const nouveau_nom = nom_modif.value.trim();
+    const nouveau_numero = numero_modif.value.trim();
+    const nouveau_poste = document.querySelector('input[name="poste_modif"]:checked');
+    let valide = true;
 
-   if (!regexNom.test(nouveau_nom)) {
-      nom_modif_msg.textContent = "Entrez un nom valide";
-      valide = false;
+    if (!regexNom.test(nouveau_nom)) {
+        nom_modif_msg.textContent = "Entrez un nom valide";
+        valide = false;
 
-   } else {
-      nom_modif_msg.textContent = "";
+    } else {
+        nom_modif_msg.textContent = "";
 
-   }
-   if (!regexNumero.test(nouveau_numero)) {
-      numero_modif_msg.textContent = "Entrez un nbr entre 1 et 99";
-      valide = false;
+    }
+    if (!regexNumero.test(nouveau_numero)) {
+        numero_modif_msg.textContent = "Entrez un nbr entre 1 et 99";
+        valide = false;
 
-   } else {
-      numero_modif_msg.textContent = "";
-   }
-   if (valide === false) {
-      return;
-   }
-   joueurs[indexmodif].nom = nouveau_nom;
-   joueurs[indexmodif].numero = nouveau_numero;
-   joueurs[indexmodif].poste = nouveau_poste.value;
-   sauvegarder();
-   afficher();
-   fermer_le_modal_modif();
+    } else {
+        numero_modif_msg.textContent = "";
+    }
+    if (valide === false) {
+        return;
+    }
+    joueurs[indexmodif].nom = nouveau_nom;
+    joueurs[indexmodif].numero = nouveau_numero;
+    joueurs[indexmodif].poste = nouveau_poste.value;
+    sauvegarder();
+    afficher();
+    fermer_le_modal_modif();
 });
 afficher();
 
+ function recherchetfilter (e) {
+    const inpt = e.target.value 
+    const filterJoueur =joueurs.filter(jr => 
+         jr.nom.toLowerCase().includes(inpt.toLowerCase()))  
+         console.log(filterJoueur)
+       afficher(filterJoueur)
+
+}
+
+recherche.addEventListener("input", (e) =>{
+    recherchetfilter(e);
+   
+})
 
 
