@@ -12,7 +12,11 @@ const regexNom = /^[A-Za-zÀ-ÿ]+(?:[ '-][A-Za-zÀ-ÿ]+)*$/;
 const regexNumero = /^(0?[1-9]|[1-9][0-9])$/;
 const ListeJoueurs = document.querySelector("#liste-joueurs")
 const age = document.querySelector("#age")
-const recherche =document.querySelector("#recherche"); 
+const recherche = document.querySelector("#recherche");
+// const regexAge =/^(0?[1-9]|[1-9][0-9])$/;
+// const numeroAge =document.querySelector("numero-Age");
+
+
 
 
 
@@ -247,18 +251,38 @@ enregistrer.addEventListener("click", function () {
 });
 afficher();
 
- function recherchetfilter (e) {
-    const inpt = e.target.value 
-    const filterJoueur =joueurs.filter(jr => 
-         jr.nom.toLowerCase().includes(inpt.toLowerCase()))  
-         console.log(filterJoueur)
-       afficher(filterJoueur)
+function recherchetfilter(e) {
+    const inpt = e.target.value
+    const filterJoueur = joueurs.filter(jr =>
+        jr.nom.toLowerCase().includes(inpt.toLowerCase()))
+    console.log(filterJoueur)
+    afficher(filterJoueur)
 
 }
 
-recherche.addEventListener("input", (e) =>{
+recherche.addEventListener("input", (e) => {
     recherchetfilter(e);
-   
+
 })
 
 
+const filterPoste = document.querySelector("#filterPoste");
+filterPoste.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("filter"))
+        return;
+    const poste = e.target.dataset.poste;
+
+
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("bg-green-500"));
+    e.target.classList.add("bg-green-500");
+
+    if (poste === "Tous") {
+        afficher(joueurs);
+
+    } else {
+        afficher(joueurs.filter(jr =>
+            jr.poste === poste
+        ));
+    }
+
+})
