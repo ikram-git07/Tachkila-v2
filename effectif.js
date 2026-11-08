@@ -107,8 +107,8 @@ function afficher(aff = joueurs) {
             
          </div >
         
-            <p class="border rounded-xl ">${aff[i].etat}</p>
-             <p class="p-3"> Age: ${aff[i].age} ans</p>  
+            <p class="border rounded-xl p-1.5  ">${aff[i].etat}</p>
+             <p class="p-2"> Age: ${aff[i].age} ans</p>  
                <div class="lg:flex lg:ml-auto lg:justify-end space-x-3 text-slate-400 text-sm">
                <button  onclick="modifier(${i})" class="cursor-pointer" >✏️</button>
                <button onclick="supprimer(${i})" class="cursor-pointer" >🗑️</button>
@@ -273,7 +273,8 @@ filterPoste.addEventListener("click", (e) => {
     const poste = e.target.dataset.poste;
 
 
-    document.querySelectorAll(".filter").forEach(b => b.classList.remove("bg-green-500"));
+    document.querySelectorAll(".filter").forEach(b =>
+        b.classList.remove("bg-green-500"));
     e.target.classList.add("bg-green-500");
 
     if (poste === "Tous") {
