@@ -13,8 +13,8 @@ const regexNumero = /^(0?[1-9]|[1-9][0-9])$/;
 const ListeJoueurs = document.querySelector("#liste-joueurs")
 const age = document.querySelector("#age")
 const recherche = document.querySelector("#recherche");
-// const regexAge =/^(0?[1-9]|[1-9][0-9])$/;
-// const numeroAge =document.querySelector("numero-Age");
+const ageMsg = document.querySelector("#age-msg");
+const regexAge =  /^([1-9]|[1-2][0-9]|3[0-5])$/;
 
 
 
@@ -59,6 +59,7 @@ nom.addEventListener("input", function () {
 // c pour ajouter le num de joueur
 numero.addEventListener("input", function () {
     const valeur = numero.value.trim();
+    const valeurAge =age.value.trim();
     const regex = /^(0?[1-9]|[1-9][0-9])$/;
 
     if (valeur === "") {
@@ -69,6 +70,21 @@ numero.addEventListener("input", function () {
     } else {
         numeroMsg.textContent = "";
     }
+});
+
+age.addEventListener("input", function (){
+    const valeur = age.value.trim();
+    if(valeur === "" ){
+        ageMsg.textContent= "";
+
+    }else if (!regexAge.test(valeur)) {
+        ageMsg.textContent = "Entrez un age entre 1  et 35 ";
+    } else {
+        ageMsg.textContent = "";
+    }
+
+
+
 });
 // c pour afficher le msg dereur si les champs vide
 const ajout = document.querySelector("#ajouter")
@@ -152,13 +168,23 @@ function ajouterJoueur() {
         numeroMsg.textContent = "";
 
     }
+    if (valeurAge === "" ){
+        ageMsg.textContent = "L'âge est obligatoire";
+
+    } else if (!regexAge.test (valeurAge)){
+        ageMsg.textContent = "Entrez un âge entre 1 et 35"
+
+    }else {
+        ageMsg.textContent = "";
+    }
+
     if (poste === null) {
         posteMsg.textContent = "choisissez un poste";
 
     } else {
         posteMsg.textContent = "";
     }
-    if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || poste === null) {
+    if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || valeurAge === "" || !regexAge.test(valeurAge) || poste === null ) {
         return;
     }
 
@@ -168,7 +194,7 @@ function ajouterJoueur() {
         numero: valeurNumero,
         poste: poste.value,
         etat: forme.value,
-        age: age.value,
+        age: valeurAge,
         capitatn: false
 
     });
@@ -177,6 +203,8 @@ function ajouterJoueur() {
 
     nom.value = "";
     numero.value = "";
+    age.value = "";
+    ageMsg.textContent = "";
     poste.checked = false;
     lemodal.classList.remove("flex");
     lemodal.classList.add("hidden");

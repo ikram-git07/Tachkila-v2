@@ -40,8 +40,60 @@ function charger() {
    if (donnees !== null) {
       joueurs = JSON.parse(donnees);
    }
+   for (let i = 0; i < joueurs.length; i++) {
+      if (joueurs[i].id === undefined) {
+         joueurs[i].id = Date.now() + i;
+      }
+   }
 }
-
+const cases = [
+   { poste: "GB", id: "gardien" },
+   { poste: "DG", id: "jr1" },
+   { poste: "DC1", id: "jr2" },
+   { poste: "DC2", id: "jr3" },
+   { poste: "DD", id: "jr4" },
+   { poste: "MG", id: "jr5" },
+   { poste: "MC1", id: "jr6" },
+   { poste: "MC2", id: "jr7" },
+   { poste: "MD", id: "jr8" },
+   { poste: "BU1", id: "jr9" },
+   { poste: "BU2", id: "jr10" }
+];
+function estPris(poste, idJoueur) {
+   for(let j = 0; j < joueurs.length; j++) {
+      if (joueurs[j].position === poste && joueurs[j].id !== idJoueur ) {
+         return true;
+      }
+   }
+   return false;
+}
+function placer(id, poste) {
+   if (poste !== "") {
+      for (let i =  0; i< joueurs.length; i++){
+         if (joueurs[i].position === poste ){
+            joueurs[i].position = "";
+         }
+      }
+   }
+   for (let i=0; i< joueurs.length; i++){
+      if (joueurs[i].id === id){
+         joueurs[i].position = poste;
+      }
+   }
+   sauvegarder();
+   afficher();
+}
+function afficherTerrain(){
+   for (let i =0; i< cases.length; i++){
+      const p = document.querySelector("#" + cases[i].id).querySelector("p");
+      p.textContent = "Libre"
+      for (let j=0; j < joueurs.length; j++){
+         if (joueurs[j].position === cases[i].poste){
+            p.textContent = joueurs[j].nom;
+         }
+      }
+   }
+}
 
 
 function afficher() {

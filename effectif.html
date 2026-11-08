@@ -122,7 +122,7 @@
                         <input type="text" id="nom" placeholder="Ex.Ayoub Arbaoui"
                             class=" border border-slate-700  rounded-xl  bg-slate-800 hover:border-slate-500 p-1 w-full">
                         <p id="nom-msg" class="text-red-500 text-sm"></p>
-                        
+
                         <fieldset class="mb-3 mt-3">
 
 
@@ -168,6 +168,12 @@
                             <label for="numero">Age </label>
                             <input type="text" id="age"
                                 class=" hover:border-slate-500  border border-slate-700 rounded-xl p-1 w-full  bg-slate-800 gap-5">
+                            <div class="mt-3">
+                                <label for="age">Age</label>
+                                <input type="text" id="age"
+                                    class="hover:border-slate-500 border-slate-700 rounded-xl p-1 w-full bg-slate-800 gap-5">
+                                <p id="age-msg" class="text-red-500 text-sm"></p>
+                            </div>
 
                         </div>
                         <div class="mt-3">
@@ -175,13 +181,13 @@
                             <div class="grid grid-cols-2 ">
                                 <label
                                     class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-green-500 text-white">
-                                    <input type="radio" name="forme" value="En forme"  required>
+                                    <input type="radio" name="forme" value="En forme" required>
                                     En forme
                                 </label>
                                 <label
                                     class="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 p-3 hover:border-red-500 text-white">
-                                    <input type="radio" name="forme" value="Blessé"  required>
-                                    Blessé 
+                                    <input type="radio" name="forme" value="Blessé" required>
+                                    Blessé
                                 </label>
 
                             </div>
@@ -212,17 +218,19 @@
             <input id="recherche" type="search" placeholder="rechercher un joueur par nom... "
                 class="w-full bg-slate-900 p-1 rounded-xl">
             <div class="flex gap-1 rounded-lg  bg-slate-900 p-1 " id="filterPoste">
-                <button  data-poste="Tous" class="filter rounded-md bg-green-500 px-3 py-1 text-sm font-semibold ">Tous</button>
-                <button  data-poste="Gardien"  class="filter rounded-md px-3 py-1 text-sm font-semibold  ">GB</button>
-                <button  data-poste="Milieu" class="filter rounded-md px-3 py-1 text-sm font-semibold  "> MIL</button>
-                <button  data-poste="Attaquant"  class="filter rounded-md px-3 py-1 text-sm font-semibold "> ATT</button>
-                <button  data-poste="Défenseur"  class="filter rounded-md px-3 py-1 text-sm font-semibold "> DEF</button>
+                <button data-poste="Tous"
+                    class="filter rounded-md bg-green-500 px-3 py-1 text-sm font-semibold ">Tous</button>
+                <button data-poste="Gardien" class="filter rounded-md px-3 py-1 text-sm font-semibold  ">GB</button>
+                <button data-poste="Milieu" class="filter rounded-md px-3 py-1 text-sm font-semibold  "> MIL</button>
+                <button data-poste="Attaquant" class="filter rounded-md px-3 py-1 text-sm font-semibold "> ATT</button>
+                <button data-poste="Défenseur" class="filter rounded-md px-3 py-1 text-sm font-semibold "> DEF</button>
             </div>
-            
-        </div>
-        <div id="liste-joueurs" class="grid grid-cols-4 max-sm:grid  max-sm:grid-cols-2  mt-6 flex flex-wrap gap-4"></div>
 
-      
+        </div>
+        <div id="liste-joueurs" class="grid grid-cols-4 max-sm:grid  max-sm:grid-cols-2  mt-6 flex flex-wrap gap-4">
+        </div>
+
+
 
     </main>
 </body>
