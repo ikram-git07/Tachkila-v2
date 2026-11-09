@@ -14,11 +14,7 @@ const ListeJoueurs = document.querySelector("#liste-joueurs")
 const age = document.querySelector("#age")
 const recherche = document.querySelector("#recherche");
 const ageMsg = document.querySelector("#age-msg");
-const regexAge =  /^([1-9]|[1-2][0-9]|3[0-5])$/;
-
-
-
-
+const regexAge = /^(1[89]|2[0-9]|3[0-5])$/;
 
 
 
@@ -59,7 +55,7 @@ nom.addEventListener("input", function () {
 // c pour ajouter le num de joueur
 numero.addEventListener("input", function () {
     const valeur = numero.value.trim();
-    const valeurAge =age.value.trim();
+
     const regex = /^(0?[1-9]|[1-9][0-9])$/;
 
     if (valeur === "") {
@@ -72,13 +68,13 @@ numero.addEventListener("input", function () {
     }
 });
 
-age.addEventListener("input", function (){
+age.addEventListener("input", function () {
     const valeur = age.value.trim();
-    if(valeur === "" ){
-        ageMsg.textContent= "";
+    if (valeur === "") {
+        ageMsg.textContent = "";
 
-    }else if (!regexAge.test(valeur)) {
-        ageMsg.textContent = "Entrez un age entre 1  et 35 ";
+    } else if (!regexAge.test(valeur)) {
+        ageMsg.textContent = "Entrez un âge entre 18 et 35 ";
     } else {
         ageMsg.textContent = "";
     }
@@ -106,6 +102,10 @@ function charger() {
 function afficher(aff = joueurs) {
     ListeJoueurs.innerHTML = ` `;
     for (let i = 0; i < aff.length; i++) {
+        let couleurEtat = "bg-green-600 border-green-600";
+        if (aff[i].etat === "Blessé") {
+            couleurEtat = "bg-red-600 border-red-600"
+        }
         const carte = document.createElement("div");
         carte.className = "bg-slate-500 border border-slate-900 rounded-xl p-4 w-full mt-3";
         carte.innerHTML = `
@@ -123,7 +123,7 @@ function afficher(aff = joueurs) {
             
          </div >
         
-            <p class="border rounded-xl p-1.5  ">${aff[i].etat}</p>
+            <p class="${couleurEtat} text-white border rounded-xl px-5 py-1.5 w-fit">${aff[i].etat}</p>
              <p class="p-2"> Age: ${aff[i].age} ans</p>  
                <div class="lg:flex lg:ml-auto lg:justify-end space-x-3 text-slate-400 text-sm">
                <button  onclick="modifier(${i})" class="cursor-pointer" >✏️</button>
@@ -142,6 +142,7 @@ function afficher(aff = joueurs) {
 function ajouterJoueur() {
     const valeurNom = nom.value;
     const valeurNumero = numero.value;
+    const valeurAge = age.value.trim();
 
     const poste = document.querySelector('input[name="poste"]:checked');
     const forme = document.querySelector('input[name="forme"]:checked');
@@ -168,13 +169,13 @@ function ajouterJoueur() {
         numeroMsg.textContent = "";
 
     }
-    if (valeurAge === "" ){
+    if (valeurAge === "") {
         ageMsg.textContent = "L'âge est obligatoire";
 
-    } else if (!regexAge.test (valeurAge)){
-        ageMsg.textContent = "Entrez un âge entre 1 et 35"
+    } else if (!regexAge.test(valeurAge)) {
+        ageMsg.textContent = "Entrez un âge entre 18 et 35"
 
-    }else {
+    } else {
         ageMsg.textContent = "";
     }
 
@@ -184,7 +185,7 @@ function ajouterJoueur() {
     } else {
         posteMsg.textContent = "";
     }
-    if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || valeurAge === "" || !regexAge.test(valeurAge) || poste === null ) {
+    if (valeurNom === "" || !regexNom.test(valeurNom) || valeurNumero === "" || !regexNumero.test(valeurNumero) || valeurAge === "" || !regexAge.test(valeurAge) || poste === null) {
         return;
     }
 

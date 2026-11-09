@@ -60,8 +60,8 @@ const cases = [
    { poste: "BU2", id: "jr10" }
 ];
 function estPris(poste, idJoueur) {
-   for(let j = 0; j < joueurs.length; j++) {
-      if (joueurs[j].position === poste && joueurs[j].id !== idJoueur ) {
+   for (let j = 0; j < joueurs.length; j++) {
+      if (joueurs[j].position === poste && joueurs[j].id !== idJoueur) {
          return true;
       }
    }
@@ -69,26 +69,26 @@ function estPris(poste, idJoueur) {
 }
 function placer(id, poste) {
    if (poste !== "") {
-      for (let i =  0; i< joueurs.length; i++){
-         if (joueurs[i].position === poste ){
+      for (let i = 0; i < joueurs.length; i++) {
+         if (joueurs[i].position === poste) {
             joueurs[i].position = "";
          }
       }
    }
-   for (let i=0; i< joueurs.length; i++){
-      if (joueurs[i].id === id){
+   for (let i = 0; i < joueurs.length; i++) {
+      if (joueurs[i].id === id) {
          joueurs[i].position = poste;
       }
    }
    sauvegarder();
    afficher();
 }
-function afficherTerrain(){
-   for (let i =0; i< cases.length; i++){
+function afficherTerrain() {
+   for (let i = 0; i < cases.length; i++) {
       const p = document.querySelector("#" + cases[i].id).querySelector("p");
       p.textContent = "Libre"
-      for (let j=0; j < joueurs.length; j++){
-         if (joueurs[j].position === cases[i].poste){
+      for (let j = 0; j < joueurs.length; j++) {
+         if (joueurs[j].position === cases[i].poste) {
             p.textContent = joueurs[j].nom;
          }
       }
@@ -99,6 +99,33 @@ function afficherTerrain(){
 function afficher() {
    ListeJoueurs.innerHTML = ` `;
    for (let i = 0; i < joueurs.length; i++) {
+
+      let optionGB = `<option value="GB">GB - Gardien</option>`;
+      if (estPris("GB", joueurs[i].id)) {
+         optionGB = `<option value="GB" disabled>GB - Gardien (déjà pris)</option>`;
+      }
+
+      let choix = "";
+
+      if (joueurs[i].etat === "Blessé") {
+         choix = `<p class="text-red-400 text-sm font-semibold">Blessé</p>`;
+      } else {
+         choix = `
+   <select onchange="placer(${joueurs[i].id}, this.value)" class="w-full bg-indigo-950 text-white text-xs border border-slate-700 p-2.5 cursor-pointer">
+      <option value="" selected>sur le banc</option>
+      ${optionGB}
+      <option value="DG">DG - Défenseur gauche</option>
+      <option value="DC1">DC - Défenseur central 1</option>
+      <option value="DC2">DC - Défenseur central 2</option>
+      <option value="DD">DD - Défenseur droit</option>
+      <option value="MG">MG - Milieu gauche</option>
+      <option value="MC1">MC - Milieu central 1</option>
+      <option value="MC2">MC - Milieu central 2</option>
+      <option value="MD">MD - Milieu droit</option>
+      <option value="BU1">BU - Buteur 1</option>
+      <option value="BU2">BU - Buteur 2</option>
+   </select>`;
+      }
       const carte = document.createElement("div");
       carte.className = "bg-slate-500 border border-slate-900 rounded-xl p-4 w-full mt-3";
       carte.innerHTML = `
@@ -114,22 +141,15 @@ function afficher() {
                </div>
            
          </div >
-         <select class="w-full bg-indigo-950 text-white text-xs border border-slate-700 p-2.5 cursor-pointer">
-            <option value="" selected disabled>sur la banc </option>
-            <option value="GB">GB - Gardien</option>
-            <option value="DG">DG - Défenseur gauche</option>
-            <option value="DC1">DC - Défenseur central 1</option>
-            <option value="DC2">DC - Défenseur central 2</option>
-            <option value="DD">DD - Défenseur droit</option>
-            <option value="MG">MG - milieu gauche</option>
-            <option value="MC">MC - Défenseur droit</option>
-            <option value="MD">MD - milieu droit</option>
-            <option value="BU">BU - Buteur 1</option>
-            <option value="BU">BU - Buteur 2</option>
-         </select>
+       ${choix}
       `;
       ListeJoueurs.appendChild(carte);
+      const select = carte.querySelector("select");
+      if (select !== null && joueurs[i].position !== undefined) {
+         select.value = joueurs[i].position;
+      }
    }
+   afficherTerrain();
 }
 afficher();
 
